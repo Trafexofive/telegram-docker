@@ -1,0 +1,15 @@
+
+services:
+  telegram-client:
+    build: .
+    container_name: telegram-client
+    environment:
+      - DISPLAY=${DISPLAY:-:99}
+    volumes:
+      - ${HOME}/.Xauthority:/root/.Xauthority:rw
+      - /tmp/.X11-unix:/tmp/.X11-unix
+      - ${PWD}/data:/home/user/.local/share/TelegramDesktop/
+    network_mode: host
+    privileged: true
+    devices:
+      - "/dev/snd:/dev/snd"
